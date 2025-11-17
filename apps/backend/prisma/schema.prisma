@@ -1,15 +1,42 @@
 // This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
-// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
-// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
 
 generator client {
-  provider = "prisma-client"
-  output   = "../src/generated/prisma"
+  provider = "prisma-client-js"
 }
 
 datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
+}
+
+//Modelos ou tabelas do banco
+
+model Continente {
+  id        Int    @id @default(autoincrement())
+  nome      String
+  descricao String
+  paises    Pais[]
+}
+
+model Pais {
+  id             Int        @id @default(autoincrement())
+  nome           String
+  populacao      Int
+  idioma_oficial String
+  moeda          String
+  continente     Continente @relation(fields: [continenteId], references: [id])
+  continenteId   Int
+
+  cidades Cidades[]
+}
+
+model Cidades {
+  id        Int    @id @default(autoincrement())
+  nome      String
+  populacao Int
+  latitude  Float
+  longitude Float
+
+  pais   Pais @relation(fields: [paisId], references: [id])
+  paisId Int
 }
