@@ -20,12 +20,14 @@ model Continente {
 
 model Pais {
   id             Int        @id @default(autoincrement())
+  codigoISO3    String     @unique
   nome           String
   populacao      Int
   idioma_oficial String
   moeda          String
-  continente     Continente @relation(fields: [continenteId], references: [id])
+
   continenteId   Int
+  continente     Continente @relation(fields: [continenteId], references: [id])
 
   cidades Cidades[]
 }
