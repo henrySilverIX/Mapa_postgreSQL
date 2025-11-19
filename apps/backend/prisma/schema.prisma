@@ -13,7 +13,7 @@ datasource db {
 
 model Continente {
   id        Int    @id @default(autoincrement())
-  nome      String
+  nome      String @unique
   descricao String
   paises    Pais[]
 }
@@ -41,4 +41,5 @@ model Cidades {
 
   pais   Pais @relation(fields: [paisId], references: [id])
   paisId Int
+  @@unique([nome, paisId])
 }

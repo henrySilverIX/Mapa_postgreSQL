@@ -1,5 +1,6 @@
 import { Request, Response } from 'express';
 import { PaisService } from '../services/paisService';
+import { prisma } from "../db";
 
 
 const service = new PaisService();
@@ -39,6 +40,30 @@ export class PaisController {
         }
 
         return res.json(pais);
+    }
+
+    async buscarPorCodigoISO3(req: Request, res: Response) {
+        try {
+            const iso3 = req.params.iso3.toUpperCase();
+
+            const pais = await prisma.pais.findUnique({
+            where: { codigoISO3: iso3 },
+            include: {
+                continente: true,
+                cidades: true
+            }
+            });
+
+            if (!pais) {
+            return res.status(404).json({ error: "País não encontrado" });
+            }
+
+            res.json(pais);
+
+        } catch (error) {
+            console.error("Erro ao buscar país por ISO3:", error);
+            res.status(500).json({ error: "Erro interno no servidor" });
+        }
     }
 
     async atualizar (req: Request, res: Response) {

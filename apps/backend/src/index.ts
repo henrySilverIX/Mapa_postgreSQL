@@ -5,7 +5,7 @@ const router = express.Router();
 
 router.get("/continents", async (req, res) => {
     try {
-        const continents = await prisma.continent.findMany();
+        const continents = await prisma.continente.findMany();
         res.json(continents);
 } catch (error){
     res.status(500).json({error: "Erro ao buscar continentes"});
