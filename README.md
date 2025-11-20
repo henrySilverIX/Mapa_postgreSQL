@@ -111,6 +111,7 @@ apps/backend/scripts/import.ts
 
 Antes de rodar o importador, lembre-se de rodar o seguinte comando para usar o Prisma:
 ```bash
+npx prisma generate
 npx prisma migrate dev
 ```
 
