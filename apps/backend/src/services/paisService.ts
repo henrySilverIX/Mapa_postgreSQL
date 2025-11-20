@@ -37,22 +37,35 @@ export class PaisService {
     }
 
     async atualizar(id: number, data: {
-        codigoISO3?: string;
-        nome?: string;
-        populacao?: number;
-        idioma_oficial?: string;
-        moeda?: string;
-        continenteId?: number;
+    codigoISO3?: string;
+    nome?: string;
+    populacao?: number;
+    idioma_oficial?: string;
+    moeda?: string;
+    continenteId?: number;
     }) {
         return prisma.pais.update({
             where: { id },
-            data
+            data: {
+                codigoISO3: data.codigoISO3?.toUpperCase(),
+                nome: data.nome,
+                populacao: Number(data.populacao),
+                idioma_oficial: data.idioma_oficial,
+                moeda: data.moeda,
+                continenteId: Number(data.continenteId)
+            }
         });
     }
 
     async deletar(id: number) {
-        return prisma.pais.delete({
-            where: { id }
-        });
+    // apaga cidades antes (para não violar FK)
+    await prisma.cidades.deleteMany({
+        where: { paisId: id }
+    });
+
+    // agora apaga o país
+    return prisma.pais.delete({
+        where: { id }
+    });
     }
 }

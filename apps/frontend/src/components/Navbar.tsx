@@ -37,6 +37,9 @@ export default function Navbar() {
           <a href="/" style={{ color: "white", textDecoration: "none" }}>
             Home
           </a>
+          <a href="/admin" style={{ color: "white", textDecoration: "none" }}>
+            Banco de Dados
+          </a>
           <a href="/sobre" style={{ color: "white", textDecoration: "none" }}>
             Sobre
           </a>

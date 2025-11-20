@@ -26,16 +26,48 @@ export class ContinenteService {
     }
 
     async atualizar(id: number, nome: string, descricao: string) {
-        return prisma.continente.update({
+        try {
+            return prisma.continente.update({
             where: { id },
-            data: { nome, descricao }
+            data: {
+                nome,
+                descricao: descricao ?? ""
+            }
+            });
+        } catch (err: any) {
+            if (err.code === "P2002") {
+            throw new Error("Já existe um continente com esse nome");
+            }
+            throw err;
+        }
+    }
+
+
+
+    async deletar(id: number) {
+    // Buscar países associados ao continente
+    const paises = await prisma.pais.findMany({
+        where: { continenteId: id },
+        include: { cidades: true }
+    });
+
+    // Excluir cidades de cada país
+    for (const pais of paises) {
+        await prisma.cidades.deleteMany({
+        where: { paisId: pais.id }
         });
     }
 
-    async deletar(id: number) {
-        return prisma.continente.delete({
-            where: { id }
-        });
+    // Agora excluir os países
+    await prisma.pais.deleteMany({
+        where: { continenteId: id }
+    });
+
+    // Por fim, excluir o continente
+    return prisma.continente.delete({
+        where: { id }
+    });
     }
+
 }
 

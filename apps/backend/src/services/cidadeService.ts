@@ -17,7 +17,11 @@ export class CidadeService {
   async listar() {
     return prisma.cidades.findMany({
       include: {
-        pais: true
+        pais: {
+          include: {
+            continente: true
+          }
+        }
       }
     });
   }

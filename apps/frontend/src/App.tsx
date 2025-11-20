@@ -73,7 +73,7 @@ function App() {
       svg.attr("viewBox", `0 0 ${width} ${height}`);
 
       const projection = d3.geoMercator()
-        .scale(140)
+        .scale(200)
         .translate([width / 2, height / 1.4]);
 
       const path = d3.geoPath().projection(projection);
@@ -178,7 +178,7 @@ function App() {
 
               {paisInfo.cidades.length > 0 && (
                 <>
-                  <h3>Capital:</h3>
+                  <h3>Capital: </h3>
                   <p>{paisInfo.cidades[0].nome}</p>
                 </>
               )}

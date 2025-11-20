@@ -6,6 +6,7 @@ const service = new ContinenteService();
 export class ContinenteController {
     async criar(req: Request, res: Response) {
         const { nome, descricao } = req.body;
+        const desc = descricao ?? "";
         const continente = await service.criar(nome, descricao);
         res.status(201).json(continente);
     }
@@ -24,7 +25,8 @@ export class ContinenteController {
     async atualizar(req: Request, res: Response) {
         const id = Number(req.params.id);
         const { nome, descricao } = req.body;
-        const atualizado = await service.atualizar(id, nome, descricao);
+        const desc = descricao ?? "";
+        const atualizado = await service.atualizar(id, nome, desc);
         res.json(atualizado);
     }
     
