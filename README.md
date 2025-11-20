@@ -109,6 +109,11 @@ O script está em:
 apps/backend/scripts/import.ts
 ```
 
+Antes de rodar o importador, lembre-se de rodar o seguinte comando para usar o Prisma:
+```bash
+npx prisma migrate dev
+```
+
 Para rodar o importador:
 
 ```bash
