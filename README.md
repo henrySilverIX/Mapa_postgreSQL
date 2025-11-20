@@ -4,17 +4,17 @@ Este projeto é uma aplicação completa composta por Frontend (React + Vite) e 
 
 O sistema possui: <br>
 
-✅ Painel administrativo completo
-✅ CRUD de Continentes
-✅ CRUD de Países
-✅ CRUD de Cidades
-✅ Filtros Inteligentes
-— Filtrar cidades por continente, país e nome
-— Filtrar países por continente, nome e idioma
-— Filtrar continentes por nome
-✅ Layout responsivo com Navbar, Sidebar e Footer
-✅ Integração com banco PostgreSQL
-✅ Importação automática de Continentes, Países e Capitais
+✅ Painel administrativo completo <br>
+✅ CRUD de Continentes <br>
+✅ CRUD de Países <br>
+✅ CRUD de Cidades <br>
+✅ Filtros Inteligentes <br>
+— Filtrar cidades por continente, país e nome <br>
+— Filtrar países por continente, nome e idioma <br>
+— Filtrar continentes por nome <br>
+✅ Layout responsivo com Navbar, Sidebar e Footer <br>
+✅ Integração com banco PostgreSQL <br>
+✅ Importação automática de Continentes, Países e Capitais <br>
 
 # Estrutura do Projeto
 
